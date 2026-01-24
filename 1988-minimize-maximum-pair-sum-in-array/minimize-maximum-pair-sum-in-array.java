@@ -3,9 +3,7 @@ class Solution {
         Arrays.sort(nums);
         int max=0;
         for(int i=0,j=nums.length-1;i<j;i++,j--){
-            nums[i]+=nums[j];
-            if(nums[i]>max)
-            max=nums[i];
+            max=Math.max(nums[i]+nums[j],max);
         }
         return max;
         
