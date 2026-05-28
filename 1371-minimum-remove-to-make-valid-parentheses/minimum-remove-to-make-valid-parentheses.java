@@ -2,7 +2,7 @@ class Solution {
     public String minRemoveToMakeValid(String s) {
         
         int  count=0;
-        Stack<Character> st=new Stack<>();
+        Deque<Character> st = new ArrayDeque<>();
         for(int i=0;i<s.length();i++){
             if(s.charAt(i)==')' && count==0){
                 continue;
@@ -20,7 +20,7 @@ class Solution {
             }
         }
         StringBuilder sb=new StringBuilder();
-        while(!st.empty()){
+        while(!st.isEmpty()){
             if(count>0 && st.peek()=='('){
                 st.pop();
                 count--;
