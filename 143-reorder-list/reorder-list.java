@@ -21,21 +21,24 @@ class Solution {
         temp=temp.next;
         temp2.next=null;
         
-        Stack<Integer> s=new Stack<>();
+        
+        
+        Stack<ListNode> s=new Stack<>();
         while(temp!=null){
-            s.push(temp.val);
+            s.push(temp);
             temp=temp.next;
+            
             
         }
         temp=head;
-        
         while(!s.empty()){
-            
-            ListNode node=new ListNode(s.pop());
-            node.next=temp.next;
-            temp.next=node;
-            temp=node.next;
+            temp2=s.pop();
+            temp2.next=temp.next;
+            temp.next=temp2;
+            temp=temp2.next;
+
         }
+        
         
         
         
