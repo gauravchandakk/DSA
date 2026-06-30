@@ -2,7 +2,7 @@ class Solution {
     public boolean isStrictlyPalindromic(int n) {
         boolean b=true;
         for(int i=2;i<n-1;i++){
-            String s=base(n,i,"");
+            String s=Integer.toString(n, i); 
             b=isPalindrome(s);
             if(b==false)
             return false;
