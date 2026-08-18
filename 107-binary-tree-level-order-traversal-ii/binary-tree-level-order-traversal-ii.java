@@ -34,9 +34,9 @@ class Solution {
                 
 
             }
-            list.add(list2);
+            list.add(0,list2);
         }
-        Collections.reverse(list);
+        
         return list;
         
     }
