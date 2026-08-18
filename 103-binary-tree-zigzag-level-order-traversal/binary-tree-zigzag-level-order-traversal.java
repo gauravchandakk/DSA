@@ -19,19 +19,33 @@ class Solution {
         if(root ==null)
         return list;
 
-        Queue<TreeNode> q=new LinkedList<>();
+        Deque<TreeNode> q=new LinkedList<>();
             boolean b=true;
         q.offer(root);
         while(!q.isEmpty()){
             int size=q.size();
             List<Integer> list2=new ArrayList<>(size);
             for(int i=0;i<size;i++){
-                TreeNode node=q.poll();;
-                if(node.left!=null)
-                q.offer(node.left);
-                if(node.right!=null)
-                q.offer(node.right);
-                list2.add(node.val);
+                 TreeNode node;
+                if(b){
+
+                   node =q.pollFirst();
+                    list2.add(node.val);
+                    if(node.left!=null)
+                        q.offer(node.left);
+                    if(node.right!=null)
+                        q.offer(node.right);
+                }
+                else{
+                    node=q.pollLast();
+                    list2.add(node.val);
+                    if(node.right!=null)
+                        q.offerFirst(node.right);
+                    if(node.left!=null)
+                        q.offerFirst(node.left);
+
+                }
+                
                 
 
             }
@@ -40,8 +54,8 @@ class Solution {
             }
             else{
                 b=true;
-                Collections.reverse(list2);
             }
+            
 
             list.add(list2);
         }
