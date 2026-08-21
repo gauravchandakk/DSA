@@ -1,33 +1,31 @@
 class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-        if(obstacleGrid[0][0]==1)
-        return 0;
         int m=obstacleGrid.length;
         int n=obstacleGrid[0].length;
-        if(obstacleGrid[m-1][n-1]==1)
-        return 0;
-        
-
-         int[][] dp=new int[m][n];
-        for(int[] a:dp){
-            Arrays.fill(a,-1);
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(obstacleGrid[i][j]==1)
+                obstacleGrid[i][j]=-1;
+            }
         }
-        return paths(0,0,obstacleGrid,m,n,dp);
-
+        return path(obstacleGrid,m-1,n-1);
     }
-    int paths(int i,int j, int[][] grid,int m,int n,int[][] dp){
-        if(grid[i][j]==1)
-        return 0;
-        if(i==m-1 & j==n-1)
+    int path(int[][] og,int i, int j){
+        if(og[i][j]==-1){
+            return 0;
+        }
+        if (og[i][j] != 0) {
+            return og[i][j];
+        }
+        if(i==0 && j==0)
         return 1;
-        if(dp[i][j]!=-1)
-        return dp[i][j];
-        else if(i==m-1)
-        return dp[i][j]=paths(i,j+1,grid,m,n,dp);
-        else if(j==n-1)
-        return dp[i][j]=paths(i+1,j,grid,m,n,dp);
-        return dp[i][j]=paths(i+1,j,grid,m,n,dp)+paths(i,j+1,grid,m,n,dp);
-        
-    }
+        if(i==0)
+        og[i][j]=path(og,i,j-1);
+        else if(j==0)
+        og[i][j]= path(og,i-1,j);
+        else
+        og[i][j]= path(og,i-1,j)+path(og,i,j-1);
+        return og[i][j];
 
+    }
 }
