@@ -1,26 +1,25 @@
 class Solution {
     public int longestPalindromeSubseq(String s) {
-        int m=s.length();
-        String rev=new StringBuilder(s).reverse().toString();
-        
-        int[][] dp=new int[m+1][m+1];
-        
-        for(int i=0;i<=m;i++){
-            for(int j=0;j<=m;j++){
-                
-                if(i==0 || j==0){
-                    dp[i][j]=0;
-                }
-                else if(s.charAt(i-1)==rev.charAt(j-1)){
 
-                    dp[i][j]=1+dp[i-1][j-1];
-                }
-                else{
-                    dp[i][j]=Math.max(dp[i-1][j],dp[i][j-1]);
-                }
-            }
-        }
-        return dp[m][m];
-    
+        int m=s.length();
+        if(m==1)
+        return 1;
+        if(m==2)
+        return  s.charAt(0)==s.charAt(1)?2:1;
+        int[][] dp=new int[m][m];
+        for(int[] i:dp)
+            Arrays.fill(i,-1);
+        return max(s,dp,0,m-1);
+    }
+    int max(String s,int[][] dp,int i,int j){
+        if(i>j || i==s.length() || j==-1)
+            return 0;
+        if(dp[i][j]!=-1)
+            return dp[i][j];
+        if(s.charAt(i)==s.charAt(j) && i==j)
+            return dp[i][j]=1+max(s,dp,i+1,j-1);
+        if(s.charAt(i)==s.charAt(j))
+            return dp[i][j]=2+max(s,dp,i+1,j-1);
+        return  dp[i][j]=Math.max(max(s,dp,i+1,j),max(s,dp,i,j-1));
     }
 }
