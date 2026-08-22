@@ -12,11 +12,11 @@ class Solution {
         return max(s,dp,0,m-1);
     }
     int max(String s,int[][] dp,int i,int j){
-        if(i>j || i==s.length() || j==-1)
+        if(i>j)
             return 0;
         if(dp[i][j]!=-1)
             return dp[i][j];
-        if(s.charAt(i)==s.charAt(j) && i==j)
+        if( i==j)
             return dp[i][j]=1+max(s,dp,i+1,j-1);
         if(s.charAt(i)==s.charAt(j))
             return dp[i][j]=2+max(s,dp,i+1,j-1);
