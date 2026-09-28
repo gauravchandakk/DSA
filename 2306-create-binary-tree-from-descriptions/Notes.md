@@ -1,1 +1,1 @@
-<h2>create-binary-tree-from-descriptions Notes</h2><hr>[ Time taken: 2d 8hrs 59m 10s ]
+<h2>create-binary-tree-from-descriptions Notes</h2><hr>[ Time taken: 2d 9hrs 9m 13s ]
