@@ -22,65 +22,21 @@ class Solution {
             int p=descriptions[i][0];
             int c=descriptions[i][1];
             int d=descriptions[i][2];
+            TreeNode parent = map.computeIfAbsent(p, k -> new TreeNode(k));
+
+            
+            TreeNode child = map.computeIfAbsent(c, k -> new TreeNode(k));
             set.add(c);
-            if(map.containsKey(p)){
-                TreeNode temp=map.get(p);
-                if(map.containsKey(c)){
                     if(d==1){
-                        TreeNode l=map.get(c);
-                        temp.left=l;
+                        
+                        parent.left=child;
                     }
                     else{
-                        TreeNode r=map.get(c);
-                        temp.right=r;
+                        
+                        parent.right=child;
 
                     }
-                }
-                else{
-                    map.put(c,new TreeNode(c));
-                    
-                    if(d==1){
-                        TreeNode l=map.get(c);
-                        temp.left=l;
-                    }
-                    else{
-                        TreeNode r=map.get(c);
-                        temp.right=r;
-
-                    }
-
-                }
-            }
-            else{
-                root=new TreeNode(p);
-                map.put(p,root);
-                TreeNode temp=map.get(p);
-                if(map.containsKey(c)){
-                    if(d==1){
-                        TreeNode l=map.get(c);
-                        temp.left=l;
-                    }
-                    else{
-                        TreeNode r=map.get(c);
-                        temp.right=r;
-
-                    }
-                }
-                else{
-                    map.put(c,new TreeNode(c));
-                    
-                    if(d==1){
-                        TreeNode l=map.get(c);
-                        temp.left=l;
-                    }
-                    else{
-                        TreeNode r=map.get(c);
-                        temp.right=r;
-
-                    }
-
-                }
-            }
+                
         }
         for(int i=0;i<descriptions.length;i++){
             if(!set.contains(descriptions[i][0])){
